@@ -2,68 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* This makes the background invisible so it blends into your site */
-    body, html {
-      margin: 0;
-      padding: 0;
-      background: transparent !important;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      width: 100vw;
-    }
-
-    .copy-container { 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
-      gap: 12px; 
-      font-family: 'Open Sans', 'Roboto', 'Segoe UI', sans-serif; 
-    }
-
-    .display-text { 
-      font-size: 18pt; 
-      color: #FFFFFF; 
-      font-weight: 400; 
-      white-space: nowrap; 
-    }
-
-    .copy-btn { 
-      background: #FF9900; 
-      color: #1C1C1C; 
-      border-radius: 6px; 
-      border: none; 
-      cursor: pointer; 
-      font-weight: 700; 
-      font-size: 11px; 
-      height: 22px; 
-      padding: 0 10px; 
-      text-transform: uppercase;
-      transition: all 0.2s ease;
-    }
-
-    /* Green color when the copy is successful */
-    .btn-success {
-      background: #4CAF50 !important;
-      color: white !important;
-    }
+    body, html { margin: 0; padding: 0; background: transparent !important; overflow: hidden; display: flex; align-items: center; justify-content: center; height: 100vh; width: 100vw; }
+    .copy-container { display: flex; align-items: center; justify-content: center; gap: 12px; font-family: sans-serif; }
+    .display-text { font-size: 18pt; color: #FFFFFF; font-weight: 400; white-space: nowrap; }
+    .copy-btn { background: #FF9900; color: #1C1C1C; border-radius: 6px; border: none; cursor: pointer; font-weight: 700; font-size: 11px; height: 22px; padding: 0 10px; text-transform: uppercase; }
+    .btn-success { background: #4CAF50 !important; color: white !important; }
   </style>
 </head>
 <body>
-
   <div class="copy-container">
     <span class="display-text" id="id-text">...</span> 
     <button class="copy-btn" id="btn" onclick="copyId()">Copy</button>
   </div>
-
   <script>
-    // This script reads the ID from the end of the URL (e.g. ?id=CL-1834)
+    // THIS IS THE PART THAT FIXES THE DOTS
     const params = new URLSearchParams(window.location.search);
-    const id = params.get('id') || 'CL-0000';
+    const id = params.get('id') || 'ID MISSING';
     document.getElementById('id-text').textContent = id;
 
     function copyId() {
@@ -71,10 +26,7 @@
         const b = document.getElementById('btn');
         b.textContent = 'DONE';
         b.classList.add('btn-success');
-        setTimeout(() => {
-          b.textContent = 'Copy';
-          b.classList.remove('btn-success');
-        }, 1500);
+        setTimeout(() => { b.textContent = 'Copy'; b.classList.remove('btn-success'); }, 1500);
       });
     }
   </script>
